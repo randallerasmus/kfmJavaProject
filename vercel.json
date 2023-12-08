@@ -2,8 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "target/kfmproject.jar",
-      "use": "@vercel/java"
+      "src": "src/main",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "src/main/target/kfmProject-1.0-SNAPSHOT.jar"
     }
   ]
 }
