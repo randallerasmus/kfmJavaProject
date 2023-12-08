@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "target/kfmproject.jar",
+      "use": "@vercel/java"
+    }
+  ]
+}
