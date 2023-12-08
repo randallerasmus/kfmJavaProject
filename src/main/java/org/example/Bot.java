@@ -28,9 +28,9 @@ public class Bot extends TelegramLongPollingBot {
 
                 List<String> serialNumbers = Arrays.asList(data.toString().split("\n"));
                 if (serialNumbers.contains(serialNumber)) {
-                    execute(new SendMessage(chatId, "A match was found."));
+                    execute(new SendMessage(chatId, "Yipee!!!! A match was found."));
                 } else {
-                    execute(new SendMessage(chatId, "No match was found."));
+                    execute(new SendMessage(chatId, "No match was found.Sorry next time"));
                 }
             } catch (IOException | TelegramApiException e) {
                 e.printStackTrace();
