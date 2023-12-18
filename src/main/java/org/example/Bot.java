@@ -15,14 +15,14 @@ public class Bot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String chatId = update.getMessage().getChatId().toString();
-            String serialNumber = update.getMessage().getText();
+            String serialNumber = update.getMessage().getText().toLowerCase(); // Convert to lowercase
 
             try {
                 URL url = new URL("https://raw.githubusercontent.com/randallerasmus/kfmcompetition/main/serial_numbers.txt");
                 Scanner scanner = new Scanner(url.openStream());
                 StringBuilder data = new StringBuilder();
                 while (scanner.hasNext()) {
-                    data.append(scanner.nextLine()).append("\n");
+                    data.append(scanner.nextLine().toLowerCase()).append("\n"); // Convert to lowercase
                 }
                 scanner.close();
 
@@ -30,13 +30,14 @@ public class Bot extends TelegramLongPollingBot {
                 if (serialNumbers.contains(serialNumber)) {
                     execute(new SendMessage(chatId, "Yipee!!!! A match was found."));
                 } else {
-                    execute(new SendMessage(chatId, "No match was found.Sorry next time"));
+                    execute(new SendMessage(chatId, "No match was found. Sorry, next time."));
                 }
             } catch (IOException | TelegramApiException e) {
                 e.printStackTrace();
             }
         }
     }
+
 
 
     @Override
